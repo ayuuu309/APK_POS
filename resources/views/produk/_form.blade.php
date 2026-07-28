@@ -8,6 +8,7 @@
              class="img-thumbnail">
     </div>
 @endif
+
 <div class="row">
     <div class="col">
      <div>
@@ -16,6 +17,7 @@
               name="foto"
               onchange="previewImage(this)"
               class="form-control @error('foto') is-invalid @enderror">
+
     @error('foto')
         <div class="invalid-feedback d-block">
             {{ $message }}
@@ -23,6 +25,7 @@
     @enderror
      </div>
 </div>
+
 <div class="col">
     <div class="mb-2">
         <label>preview Foto</label><br>
@@ -30,11 +33,14 @@
     </div>
 </div>
 </div>
+
+
 <div>
     <label>Nama Produk</label><br>
     <input type="text" name="name"
         class="form-control @error('name') is-invalid @enderror"
         value="{{ old('name', $produk->nama ?? '') }}">
+
     @error('name')
         <div class="invalid-feedback">
             {{ $message }}
@@ -42,11 +48,60 @@
     @enderror
 </div>
 
+
+<!-- TAMBAHAN JENIS MAKANAN -->
+<div>
+    <label>Jenis Makanan</label><br>
+
+    <select name="jenis_makanan"
+        class="form-control @error('jenis_makanan') is-invalid @enderror">
+
+        <option value="">
+            -- Pilih Jenis Makanan --
+        </option>
+
+        <option value="Makanan Berat"
+            {{ old('jenis_makanan', $produk->jenis_makanan ?? '') == 'Makanan Berat' ? 'selected' : '' }}>
+            Makanan Berat
+        </option>
+
+        <option value="Makanan Ringan"
+            {{ old('jenis_makanan', $produk->jenis_makanan ?? '') == 'Makanan Ringan' ? 'selected' : '' }}>
+            Makanan Ringan
+        </option>
+
+        <option value="Minuman"
+            {{ old('jenis_makanan', $produk->jenis_makanan ?? '') == 'Minuman' ? 'selected' : '' }}>
+            Minuman
+        </option>
+
+        <option value="Dessert"
+            {{ old('jenis_makanan', $produk->jenis_makanan ?? '') == 'Dessert' ? 'selected' : '' }}>
+            Dessert
+        </option>
+
+        <option value="Snack"
+            {{ old('jenis_makanan', $produk->jenis_makanan ?? '') == 'Snack' ? 'selected' : '' }}>
+            Snack
+        </option>
+
+    </select>
+
+    @error('jenis_makanan')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+<!-- AKHIR TAMBAHAN -->
+
+
 <div>
     <label>Harga Beli</label><br>
     <input type="number" name="purchase_price"
         class="form-control @error('purchase_price') is-invalid @enderror"
         value="{{ old('purchase_price', $produk->harga_beli ?? '') }}">
+
     @error('purchase_price')
         <div class="invalid-feedback">
             {{ $message }}
@@ -54,11 +109,13 @@
     @enderror
 </div>
 
+
 <div>
     <label>Harga Jual</label><br>
     <input type="number" name="selling_price"
         class="form-control @error('selling_price') is-invalid @enderror"
         value="{{ old('selling_price', $produk->harga_jual ?? '') }}">
+
     @error('selling_price')
         <div class="invalid-feedback">
             {{ $message }}
@@ -66,11 +123,13 @@
     @enderror
 </div>
 
+
 <div>
     <label>Stok</label><br>
     <input type="number" name="stock"
         class="form-control @error('stock') is-invalid @enderror"
         value="{{ old('stock', $produk->stok ?? '') }}">
+
     @error('stock')
         <div class="invalid-feedback">
             {{ $message }}
@@ -78,8 +137,13 @@
     @enderror
 </div>
 
+
 <button class="btn btn-success mt-3" type="submit">Simpan</button>
-<a href="{{ route('produk.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+
+<a href="{{ route('produk.index') }}" class="btn btn-secondary mt-3">
+    Kembali
+</a>
+
 
 <script>
     function previewImage(input) {

@@ -82,7 +82,7 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        $this->authorize('update', $Produk);
+        $this->authorize('update', $produk);
 
         return view('produk.edit', compact('produk'));
     }
@@ -92,7 +92,7 @@ class ProdukController extends Controller
      */
    public function update(UpdateRequest $request, Produk $produk)
 {
-    $this->authorize('update', $Produk);
+    $this->authorize('update', $produk);
 
     $data = $request->validated();
 
@@ -125,15 +125,15 @@ class ProdukController extends Controller
   /**
  * Remove the specified resource from storage.
  */
-public function destroy(Produk $produk)
+public function destroy(Produk $Produk)
 {
     $this->authorize('delete', $Produk);
 
-    if ($produk->foto){
-        Storage::disk('public')->delete($produk->foto);
+    if ($Produk->foto){
+        Storage::disk('public')->delete($Produk->foto);
     }
 
-    $produk->delete();
-    return redirect()->route('produk.index')->with('success', 'Product deleted successfully.');
+    $Produk->delete();
+    return redirect()->route('Produk.index')->with('success', 'Product deleted successfully.');
   }
 }
